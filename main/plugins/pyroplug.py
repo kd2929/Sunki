@@ -72,7 +72,9 @@ async def get_msg(userbot, client, sender, edit_id, msg_link, i):
             if msg.caption is not None:
                 caption = msg.caption
             await edit.edit(str(file))
+            print(str(file))
             if str(file).split(".")[-1] in ['mkv', 'mp4', 'webm']:
+                print("a video file")
                 await edit.edit('Video File!')
                 if str(file).split(".")[-1] in ['webm', 'mkv']:
                     path = str(file).split(".")[0] + ".mp4"
@@ -97,9 +99,11 @@ async def get_msg(userbot, client, sender, edit_id, msg_link, i):
                     )
                 )
             elif str(file).split(".")[-1] in ['jpg', 'jpeg', 'png', 'webp']:
+                print("a image file")
                 await edit.edit("Uploading photo.")
                 await bot.send_file(sender, file, caption=caption)
             else:
+                print("no file type found")
                 thumb_path=thumbnail(sender)
                 await client.send_document(
                     sender,
@@ -118,9 +122,14 @@ async def get_msg(userbot, client, sender, edit_id, msg_link, i):
         except (ChannelBanned, ChannelInvalid, ChannelPrivate, ChatIdInvalid, ChatInvalid):
             await client.edit_message_text(sender, edit_id, "Have you joined the channel?")
             return 
+        
+        
         except Exception as e:
             await client.edit_message_text(sender, edit_id, f'Failed to saveeeeeeeeeeee: `{msg_link}`')
             return 
+    
+    
+    
     else:
         edit = await client.edit_message_text(sender, edit_id, "Cloning.")
         chat =  msg_link.split("/")[-2]
