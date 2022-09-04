@@ -68,9 +68,9 @@ async def get_msg(userbot, client, sender, edit_id, msg_link, i):
                 )
             )
             await edit.edit('Preparing to Upload!')
-            caption = str(file)
-            if msg.caption is not None:
-                caption = msg.caption
+#             caption = str(file)
+#             if msg.caption is not None:
+#                 caption = msg.caption
             if str(file).split(".")[-1] in ['mkv', 'mp4', 'webm']:
                 if str(file).split(".")[-1] in ['webm', 'mkv']:
                     path = str(file).split(".")[0] + ".mp4"
