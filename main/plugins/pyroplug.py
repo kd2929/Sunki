@@ -73,8 +73,6 @@ async def get_msg(userbot, client, sender, edit_id, msg_link, i):
                 caption = msg.caption
             await edit.edit(str(file))
             if str(file).split(".")[-1] in ['mkv', 'mp4', 'webm']:
-                await edit.edit('Video File!')
-
                 if str(file).split(".")[-1] in ['webm', 'mkv']:
                     path = str(file).split(".")[0] + ".mp4"
                     os.rename(file, path) 
@@ -103,11 +101,9 @@ async def get_msg(userbot, client, sender, edit_id, msg_link, i):
                     )
                 )
             elif str(file).split(".")[-1] in ['jpg', 'jpeg', 'png', 'webp']:
-                print("a image file")
                 await edit.edit("Uploading photo.")
                 await bot.send_file(sender, file, caption=caption)
             else:
-                print("no file type found")
                 thumb_path=thumbnail(sender)
                 await client.send_document(
                     sender,
