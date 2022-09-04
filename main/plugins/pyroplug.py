@@ -72,10 +72,8 @@ async def get_msg(userbot, client, sender, edit_id, msg_link, i):
             if msg.caption is not None:
                 caption = msg.caption
             await edit.edit(str(file))
-            print(str(file))
             if str(file).split(".")[-1] in ['mkv', 'mp4', 'webm']:
                 await edit.edit('Video File!')
-
 
                 if str(file).split(".")[-1] in ['webm', 'mkv']:
                     path = str(file).split(".")[0] + ".mp4"
@@ -85,10 +83,9 @@ async def get_msg(userbot, client, sender, edit_id, msg_link, i):
                 
                 
                 data = video_metadata(file)
-
+                print(data)
                 duration = data["duration"]
-                thumb_path = await screenshot(file, duration, sender)
-
+                # thumb_path = await screenshot(file, duration, sender)
 
                 print(thumb_path)
                 await client.send_video(
@@ -97,7 +94,7 @@ async def get_msg(userbot, client, sender, edit_id, msg_link, i):
                     caption=caption,
                     supports_streaming=True,
                     duration=duration,
-                    thumb=thumb_path,
+                    # thumb=thumb_path,
                     progress=progress_for_pyrogram,
                     progress_args=(
                         client,
