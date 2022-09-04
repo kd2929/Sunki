@@ -85,8 +85,8 @@ async def get_msg(userbot, client, sender, edit_id, msg_link, i):
                 data = video_metadata(file)
                 print(data)
                 duration = data["duration"]
-                # thumb_path = await screenshot(file, duration, sender)
-
+                thumb_path = await screenshot(file, duration, sender)
+            
                 print(thumb_path)
                 await client.send_video(
                     chat_id=sender,
@@ -94,7 +94,7 @@ async def get_msg(userbot, client, sender, edit_id, msg_link, i):
                     caption=caption,
                     supports_streaming=True,
                     duration=duration,
-                    # thumb=thumb_path,
+                    thumb=thumb_path,
                     progress=progress_for_pyrogram,
                     progress_args=(
                         client,
