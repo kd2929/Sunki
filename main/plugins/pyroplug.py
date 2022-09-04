@@ -83,12 +83,10 @@ async def get_msg(userbot, client, sender, edit_id, msg_link, i):
                 
                 
                 data = video_metadata(file)
-                print(data)
                 duration = data["duration"]
-#                 thumb_path = await screenshot(file, duration, sender)
-                thumb_path = "thum.jpg"
-            
+                thumb_path = await screenshot(file, duration, sender)
                 print(thumb_path)
+
                 await client.send_video(
                     chat_id=sender,
                     video=file,
@@ -131,6 +129,7 @@ async def get_msg(userbot, client, sender, edit_id, msg_link, i):
         
         
         except Exception as e:
+            print(e)
             await client.edit_message_text(sender, edit_id, f'Failed to saveeeeeeeeeeee: `{msg_link}`')
             return 
     
