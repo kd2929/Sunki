@@ -72,6 +72,7 @@ async def get_msg(userbot, client, sender, edit_id, msg_link, i):
 #             if msg.caption is not None:
 #                 caption = msg.caption
             if str(file).split(".")[-1] in ['mkv', 'mp4', 'webm']:
+                await edit.edit('Video File!')
                 if str(file).split(".")[-1] in ['webm', 'mkv']:
                     path = str(file).split(".")[0] + ".mp4"
                     os.rename(file, path) 
