@@ -74,15 +74,23 @@ async def get_msg(userbot, client, sender, edit_id, msg_link, i):
             await edit.edit(str(file))
             print(str(file))
             if str(file).split(".")[-1] in ['mkv', 'mp4', 'webm']:
-                print("a video file")
                 await edit.edit('Video File!')
+
+
                 if str(file).split(".")[-1] in ['webm', 'mkv']:
                     path = str(file).split(".")[0] + ".mp4"
                     os.rename(file, path) 
                     file = str(file).split(".")[0] + ".mp4"
+                
+                
+                
                 data = video_metadata(file)
+
                 duration = data["duration"]
                 thumb_path = await screenshot(file, duration, sender)
+
+
+                print(thumb_path)
                 await client.send_video(
                     chat_id=sender,
                     video=file,
