@@ -56,7 +56,7 @@ async def get_msg(userbot, client, sender, edit_id, msg_link, i):
                     await client.send_message(sender, msg.text.markdown)
                     await edit.delete()
                     return
-            edit = await client.edit_message_text(sender, edit_id, "Trying to Download.........")
+            edit = await client.edit_message_text(sender, edit_id, "Trying to Download")
             file = await userbot.download_media(
                 msg,
                 progress=progress_for_pyrogram,
@@ -67,7 +67,7 @@ async def get_msg(userbot, client, sender, edit_id, msg_link, i):
                     time.time()
                 )
             )
-            await edit.edit('Preparing to Upload!')
+            # await edit.edit('Preparing to Upload!')
             caption = str(file)
             if msg.caption is not None:
                 caption = msg.caption
@@ -77,8 +77,6 @@ async def get_msg(userbot, client, sender, edit_id, msg_link, i):
                     path = str(file).split(".")[0] + ".mp4"
                     os.rename(file, path) 
                     file = str(file).split(".")[0] + ".mp4"
-                
-                
                 
                 data = video_metadata(file)
                 duration = data["duration"]
@@ -126,7 +124,7 @@ async def get_msg(userbot, client, sender, edit_id, msg_link, i):
         
         except Exception as e:
             print(e)
-            await client.edit_message_text(sender, edit_id, f'Failed to saveeeeeeeeeeee: `{msg_link}`')
+            await client.edit_message_text(sender, edit_id, f'Failed to save: `{msg_link}`')
             return 
     
     
